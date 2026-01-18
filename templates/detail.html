@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ avtosalon.car_name }}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: #fff;
+            color: #000;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info p {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .back {
+            background: #64748b;
+        }
+
+        .edit {
+            background: #f59e0b;
+        }
+
+        .delete {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>{{ avtosalon.car_name }}</h2>
+
+    <div class="info">
+        <p><strong>Color:</strong> {{ avtosalon.color }}</p>
+        <p><strong>Year:</strong> {{ avtosalon.year }}</p>
+        <p><strong>Brand:</strong> {{ avtosalon.brand }}</p>
+        <p><strong>Country:</strong> {{ avtosalon.country }}</p>
+        <p><strong>Type:</strong> {{ avtosalon.type }}</p>
+        <p><strong>Price:</strong> ${{ avtosalon.price }}</p>
+    </div>
+
+    <div class="buttons">
+        <a href="{% url 'index' %}" class="back">⬅ Back</a>
+        <a href="{% url 'update' avtosalon.id %}" class="edit">✏ Edit</a>
+        <a href="{% url 'delete' avtosalon.id %}" class="delete"
+           onclick="return confirm('Are you sure?')">🗑 Delete</a>
+    </div>
+</div>
+
+</body>
+</html>

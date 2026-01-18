@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avtosalon</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #1e293b;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .add-btn {
+            text-decoration: none;
+            background: #22c55e;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: #16a34a;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .actions a {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .detail {
+            background: #3b82f6;
+        }
+
+        .edit {
+            background: #f59e0b;
+        }
+
+        .delete {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🚗 Avtosalon</h1>
+</header>
+
+<div class="container">
+
+    <div class="top-bar">
+        <h2>Cars List</h2>
+        <a href="{% url 'create' %}" class="add-btn">+ Add Car</a>
+    </div>
+
+    <div class="cards">
+        {% for car in avtosalons %}
+        <div class="card">
+            <h3>{{ car.car_name }}</h3>
+            <p><strong>Brand:</strong> {{ car.brand }}</p>
+            <p><strong>Year:</strong> {{ car.year }}</p>
+            <p><strong>Price:</strong> ${{ car.price }}</p>
+
+            <div class="actions">
+                <a href="{% url 'detail' car.id %}" class="detail">Detail</a>
+                <a href="{% url 'update' car.id %}" class="edit">Edit</a>
+                <a href="{% url 'delete' car.id %}" class="delete"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No cars found.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

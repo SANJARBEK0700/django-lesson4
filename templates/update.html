@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Car</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-box {
+            background: #fff;
+            padding: 30px;
+            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 12px;
+            background: #11998e;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background: #0f766e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-box">
+    <h2>Update Car</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="car_name" value="{{ avtosalon.car_name }}" required>
+        <input type="text" name="color" value="{{ avtosalon.color }}" required>
+        <input type="number" name="year" value="{{ avtosalon.year }}" required>
+        <input type="text" name="brand" value="{{ avtosalon.brand }}" required>
+        <input type="text" name="country" value="{{ avtosalon.country }}" required>
+        <input type="text" name="type" value="{{ avtosalon.type }}" required>
+        <input type="number" name="price" value="{{ avtosalon.price }}" required>
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>
